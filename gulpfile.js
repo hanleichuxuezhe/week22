@@ -41,3 +41,7 @@ gulp.task("js", function () {
         .pipe(minJs()) //压缩
         .pipe(gulp.dest("./src/js/"));
 });
+// 7.在gulp中创建watch任务，进行css文件监听，自动执行对应的任务（10分）；
+gulp.task("watch", function () {
+    gulp.watch("./src/scss/*.scss",gulp.series("scss"));
+})
