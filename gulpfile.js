@@ -33,7 +33,7 @@ gulp.task("scss", function () {
 });
 // 6.在gulp中创建js任务编译js文件，合并js，并且压缩（10分）；
 gulp.task("js", function () {
-    return gulp.src(["./src/js/*.js","!./src/js/all.js"])
+    return gulp.src(["./src/js/*.js", "!./src/js/all.js"])
         .pipe(babel({
             presets: "es2015"
         })) //es6 --> es5
@@ -49,4 +49,9 @@ gulp.task("watch", function () {
 gulp.task("default", gulp.parallel("webserver", "js", "scss", "watch"));
 
 // 9.在gulp中创建build任务，指向js,css任务，并把文件生成到dist文件夹（10分）；
-gulp.task("build",gulp.parallel("js","scss"))
+gulp.task("build", gulp.parallel("js", "scss"));
+
+gulp.task("copy", function () {
+    gulp.src("./src/index.html").pipe(gulp.dest("./dist/"));
+    return gulp.src("./src/js/common/flexible.js").pipe(gulp.dest("./dist/js/common/"));
+})
