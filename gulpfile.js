@@ -2,7 +2,7 @@
 // 2.以自己的名字作为本地的开发分支，在开发分支进行开发，开发完成后合并到master分支提交到远程的master分支（10分）；
 // 3.使用gulp搭建前端自动化开发环境（10分）；
 // 
-// 5.在gulp中创建scss任务，进行scss文件编译，并且压缩css（10分）；
+
 // 6.在gulp中创建js任务编译js文件，合并js，并且压缩（10分）；
 // 7.在gulp中创建watch任务，进行css文件监听，自动执行对应的任务（10分）；
 // 8.在gulp中创建default任务，默认执行webserver服务，js，css，watch任务（10分）；
@@ -24,4 +24,11 @@ gulp.task("server", function () {
             open: true,
             livereload: true,
         }))
+});
+// 5.在gulp中创建scss任务，进行scss文件编译，并且压缩css（10分）；
+gulp.task("sass", function () {
+    return gulp.src(["./src/scss/*.scss","!./src/scss/common.scss"])
+        .pipe(sass())//编译
+        .pipe(minCss())//压缩
+        .pipe(gulp.dest("./src/css/"))
 })
